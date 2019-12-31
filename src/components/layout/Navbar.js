@@ -18,11 +18,11 @@ const useStyles = makeStyles(theme => ({
   },
   routeClass: {
     '&:hover': {
-      border: '0.5px solid white',
       color: '#3F51B5',
-      backgroundColor: 'white',
-      borderRadius: '5px'
+      backgroundColor: '#dfe2ed'
     },
+    border: '1px solid white',
+    borderRadius: '5px',
     fontWeight: '500',
     margin: '5px',
     padding: '5px',
@@ -33,8 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
   routeClassActive: {
     color: '#3F51B5',
-    backgroundColor: 'white',
-    borderRadius: '5px'
+    backgroundColor: 'white'
   }
 }));
 
@@ -69,6 +68,6 @@ const Navbar = () => {
       </AppBar>
     </div>
   );
-}
+};
 
 export default Navbar;
