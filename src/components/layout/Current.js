@@ -6,7 +6,7 @@ import CurrentItem from './CurrentItem';
 
 const Current = ({ current, isFavorite, toggleFavorite, checkIfFavorite }) => {
   if (current === null) {
-    return <span>loading....</span>;
+    return <></>;
   } else {
     checkIfFavorite(current.cityKey);
   }

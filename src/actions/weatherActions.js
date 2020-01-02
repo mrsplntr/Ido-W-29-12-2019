@@ -1,8 +1,4 @@
-// import axios from 'axios';
-
-import { fTelAvivCur } from '../tempJSON/currentTA';
-import { fTelAvivAuto } from '../tempJSON/autoCompleteTA';
-import { fTelAvivFive } from '../tempJSON/fiveDaysTA';
+import axios from 'axios';
 
 import {
   GET_AUTO_COMPLETE_WEATHER,
@@ -13,17 +9,13 @@ import {
   SET_LOADING
 } from './types';
 
-// const API_Key = '';
+const API_Key = '';
 
 export const getAutoComplete = text => async dispatch => {
   try {
-    setLoading();
-    // const res = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_Key}&q=${text}`);
-    // const autoData = res.data;
-    // console.log(autoData);
-
-    const res = await fTelAvivAuto(text);
-    const autoData = JSON.parse(res);
+    dispatch(setLoading());
+    const res = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_Key}&q=${text}`);
+    const autoData = res.data;
 
     dispatch({
       type: GET_AUTO_COMPLETE_WEATHER,
@@ -42,13 +34,9 @@ let autoTimeout;
 export const getFiveDays = (cityKey, cityName) => async dispatch => {
   clearTimeout(autoTimeout);
   try {
-    setLoading();
-    // const res = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${API_Key}&metric=true`);
-    // const fiveData = res.data;
-    // console.log(fiveData);
-
-    const res = await fTelAvivFive;
-    const fiveData = JSON.parse(res);
+    dispatch(setLoading());
+    const res = await axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${API_Key}&metric=true`);
+    const fiveData = res.data;
 
     const fiveDataWithCityName = { cityKey, cityName, ...fiveData };
 
@@ -75,12 +63,9 @@ export const cleanAutocomplete = () => {
 
 export const getCurrent = (cityKey, cityName) => async dispatch => {
   try {
-    setLoading();
-    // const res = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${API_Key}`);
-    // const currentData = res.data;
-
-    const res = await fTelAvivCur;
-    const currentData = JSON.parse(res);
+    dispatch(setLoading());
+    const res = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${API_Key}`);
+    const currentData = res.data;
 
     const currentDataWithCityName = { cityKey, cityName, ...currentData };
 

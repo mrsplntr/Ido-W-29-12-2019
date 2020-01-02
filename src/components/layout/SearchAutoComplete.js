@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getFiveDays, getCurrent } from '../../actions/weatherActions';
 
+import Typography from '@material-ui/core/Typography';
+
 const SearchAutoComplete = ({ autoComplete, getFiveDays, getCurrent }) => {
   useEffect(() => {
     if (autoComplete !== null && autoComplete.length > 0) {
@@ -10,15 +12,23 @@ const SearchAutoComplete = ({ autoComplete, getFiveDays, getCurrent }) => {
     }
   }, [autoComplete, getFiveDays, getCurrent]);
 
+  if (autoComplete !== null && autoComplete.length === 0) {
+    return (
+      <Typography align='center' variant='body2' color='textSecondary'>
+        No results found for the query...
+      </Typography>
+    );
+  }
+
   return (
-    <div>
-      <div style={{ textAlign: 'center' }}>
-        {autoComplete !== null &&
-          autoComplete.map((c, i) => (
-            <div key={`${c.key} ${i}`}>{c.LocalizedName}</div>
-          ))}
-      </div>
-    </div>
+    <>
+      {autoComplete !== null &&
+        autoComplete.map((c, i) => (
+          <Typography key={`${c.key} ${i}`} align='center' variant='body1'>
+            {c.LocalizedName}
+          </Typography>
+        ))}
+    </>
   );
 };
 

@@ -12,6 +12,8 @@ export const pTelAvivAuto = new Promise((resolve, reject) => {
   }, 1000);
 });
 
+export const empty = `[]`;
+
 export const TelAvivAuto = `[
   {
     "Version": 1,

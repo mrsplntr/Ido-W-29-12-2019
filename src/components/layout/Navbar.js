@@ -10,30 +10,30 @@ import Brightness6Icon from '@material-ui/icons/Brightness6';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: '1rem'
+    marginBottom: '5rem'
   },
   title: {
     marginLeft: '5px',
-    flexGrow: 1
+    flexGrow: 1,
+    color: 'rgba(0, 159, 219,1)'
   },
   routeClass: {
     '&:hover': {
-      color: '#3F51B5',
+      color: 'rgba(0, 159, 219,1)',
       backgroundColor: '#dfe2ed'
     },
-    border: '1px solid white',
-    borderRadius: '5px',
-    fontWeight: '500',
-    margin: '5px',
-    padding: '5px',
-    color: 'white',
+    border: '1px solid rgba(0, 159, 219,1)',
+    borderRadius: '3px',
+    fontWeight: '700',
+    margin: '3px',
+    padding: '7px',
+    color: 'rgba(0, 159, 219,1)',
     textDecoration: 'none',
-    textTransform: 'uppercase',
-    fontFamily: 'Roboto'
+    textTransform: 'uppercase'
   },
   routeClassActive: {
-    color: '#3F51B5',
-    backgroundColor: 'white'
+    color: 'white',
+    backgroundColor: 'rgba(0, 159, 219,1)'
   }
 }));
 
@@ -42,9 +42,12 @@ const Navbar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar
+        position='fixed'
+        color='default'
+      >
         <Toolbar>
-          <Brightness6Icon />
+          <Brightness6Icon style={{ color: 'rgba(0, 159, 219,1)' }} />
           <Typography variant='h6' className={classes.title}>
             Weather
           </Typography>

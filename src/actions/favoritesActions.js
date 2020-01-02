@@ -9,14 +9,16 @@ import {
 
 export const getFavorites = () => async dispatch => {
   try {
-    setLoading();
+    dispatch(setLoading());
     const favoritesData =
       JSON.parse(window.localStorage.getItem('localFavorites')) || [];
     
-    dispatch({
-      type: GET_FAVORITES,
-      payload: favoritesData
-    });
+    setTimeout(() => {
+      dispatch({
+        type: GET_FAVORITES,
+        payload: favoritesData
+      });
+    }, 200)
   } catch (error) {
     dispatch({
       type: FAVORITES_ERROR,
@@ -27,7 +29,6 @@ export const getFavorites = () => async dispatch => {
 
 export const checkIfFavorite = id => async dispatch => {
   try {
-    setLoading();
     const favoritesData =
       JSON.parse(window.localStorage.getItem('localFavorites')) || [];
     const favoriteExist = !!favoritesData.find(f => f.id === id);
@@ -53,7 +54,6 @@ export const checkIfFavorite = id => async dispatch => {
 
 export const toggleFavorite = newFavorite => async dispatch => {
   try {
-    setLoading();
     const favoritesData =
       JSON.parse(window.localStorage.getItem('localFavorites')) || [];
     const favoriteExist = !!favoritesData.find(f => f.id === newFavorite.id);
@@ -94,7 +94,6 @@ export const toggleFavorite = newFavorite => async dispatch => {
 
 export const deleteFavorite = id => async dispatch => {
   try {
-    setLoading();
     const favoritesData =
       JSON.parse(window.localStorage.getItem('localFavorites')) || [];
     const changedFavorites = favoritesData.filter(f => f.id !== id);
